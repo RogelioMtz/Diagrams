@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Visualización Gráfica de Datos</title>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        google.charts.load('current', {'packages':['corechart']});
+
+        // Gráfico 1: Comparativa de Porcentaje Población y Número de Personas en Situación de Pobreza
+        google.charts.setOnLoadCallback(drawChart1);
+        function drawChart1() {
+            var data = google.visualization.arrayToDataTable([
+                ['Año', 'Porcentaje de Pobreza', 'Número de Personas en Pobreza'],
+                ['2008',  49.5, 44.4],
+                ['2014',  55.3, 46.2],
+                ['2018',  52.4, 41.9]
+            ]);
+
+            var options = {
+                title: 'Comparativa de Porcentaje Población y Número de Personas en Situación de Pobreza',
+                curveType: 'function',
+                legend: { position: 'bottom' },
+                hAxis: { title: 'Año' },
+                vAxis: { title: 'Porcentaje / Número de Personas' }
+            };
+
+            var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+            chart.draw(data, options);
+        }
+
+        // Gráfico 2: Comparativa de Pobreza y Pobreza Extrema
+        google.charts.setOnLoadCallback(drawChart2);
+        function drawChart2() {
+            var data = google.visualization.arrayToDataTable([
+                ['Año', 'Pobreza', 'Pobreza Extrema'],
+                ['2008',  49.0, 16.8],
+                ['2014',  53.2, 20.6],
+                ['2018',  48.8, 16.8]
+            ]);
+
+            var options = {
+                title: 'Comparativa de Pobreza y Pobreza Extrema',
+                chartArea: {width: '50%'},
+                vAxis: {
+                    title: 'Porcentaje',
+                    minValue: 0
+                },
+                hAxis: {
+                    title: 'Año'
+                }
+            };
+
+            var chart = new google.visualization.ColumnChart(document.getElementById('barchart_values'));
+            chart.draw(data, options);
+        }
+
+        // Gráfico 3: Indicadores de Carencias
+        google.charts.setOnLoadCallback(drawChart3);
+        function drawChart3() {
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'Año');
+            data.addColumn('number', 'Rezago Educativo');
+            data.addColumn('number', 'Carencia, Salud');
+            data.addColumn('number', 'Carencia, Vivienda');
+
+            data.addRows([
+                ['2008', 24.5, 42.8, 19.7],
+                ['2014', 22.4, 21.8, 14.8],
+                ['2018', 21.1, 20.2, 13.8]
+            ]);
+
+            var options = {
+                title: 'Indicadores de Carencias en Millones de Personas',
+                hAxis: { title: 'Año' },
+                vAxis: { title: 'Millones de Personas' },
+                legend: { position: 'bottom' }
+            };
+
+            var chart = new google.visualization.ScatterChart(document.getElementById('scatter_chart'));
+            chart.draw(data, options);
+        }
+
+        // Gráfico 4: Pobreza en Zona Noreste de México
+        google.charts.setOnLoadCallback(drawChart4);
+        function drawChart4() {
+            var data = google.visualization.arrayToDataTable([
+                ['Estado', 'Número de Personas (Miles de Personas)'],
+                ['Coahuila', 691.1],
+                ['Nuevo León', 773.0],
+                ['San Luis Potosí', 1229.0],
+                ['Sonora', 863.0],
+                ['Zacatecas', 755.2]
+            ]);
+
+            var options = {
+                title: 'Pobreza en Zona Noreste de México',
+                is3D: true
+            };
+
+            var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+            chart.draw(data, options);
+        }
+
+        // Gráfico 5: Pobreza en Zona Sureste de México
+        google.charts.setOnLoadCallback(drawChart5);
+        function drawChart5() {
+            var data = google.visualization.arrayToDataTable([
+                ['Estado', 'Número de Personas (Miles de Personas)'],
+                ['Campeche', 93.0],
+                ['Chiapas', 1623.3],
+                ['Quintana Roo', 59.8],
+                ['Tabasco', 302.5]
+            ]);
+
+            var options = {
+                title: 'Pobreza en Zona Sureste de México',
+                hAxis: { title: 'Número de Personas (Miles de Personas)' },
+                vAxis: { title: 'Estado' },
+                legend: { position: 'none' }
+            };
+
+            var chart = new google.visualization.BarChart(document.getElementById('barchart'));
+            chart.draw(data, options);
+        }
+    </script>
+</head>
+<body>
+    <h1>Visualización Gráfica de Datos</h1>
+
+    <h2>Gráfico 1: Comparativa de Porcentaje Población y Número de Personas en Situación de Pobreza</h2>
+    <div id="curve_chart" style="width: 900px; height: 500px"></div>
+
+    <h2>Gráfico 2: Comparativa de Pobreza y Pobreza Extrema</h2>
+    <div id="barchart_values" style="width: 900px; height: 500px"></div>
+
+    <h2>Gráfico 3: Indicadores de Carencias</h2>
+    <div id="scatter_chart" style="width: 900px; height: 500px"></div>
+
+    <h2>Gráfico 4: Pobreza en Zona Noreste de México</h2>
+    <div id="piechart" style="width: 900px; height: 500px"></div>
+
+    <h2>Gráfico 5: Pobreza en Zona Sureste de México</h2>
+    <div id="barchart" style="width: 900px; height: 500px"></div>
+</body>
+</html>
